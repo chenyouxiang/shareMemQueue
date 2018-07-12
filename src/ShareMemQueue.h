@@ -9,22 +9,22 @@ using namespace std;
 
 class ShareMemQueue {
 public:
-	ShareMemQueue(string path, size_t size);
-	~ShareMemQueue();
-	int write(const void *data, size_t size);
-	int read(void **data);
+    ShareMemQueue(string path, size_t size);
+    ~ShareMemQueue();
+    int write(const void *data, size_t size);
+    int read(void **data);
 private:
-	struct MemHeader {
-		size_t readIndex;
-		size_t writeIndex;
-		size_t size; 
-		char *addr;
-	};
-	struct BlockHeader {
-		size_t size;
-		int    hasData;
-	};
-    MemHeader* memHeader_;	
+    struct MemHeader {
+        size_t readIndex;
+        size_t writeIndex;
+        size_t size; 
+        char *addr;
+    };
+    struct BlockHeader {
+        size_t size;
+        int    hasData;
+    };
+    MemHeader* memHeader_;  
     int shmId_;
     FileLock lock_;
     key_t key_;

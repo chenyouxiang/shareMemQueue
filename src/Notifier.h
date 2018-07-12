@@ -4,9 +4,9 @@
 
 class Notifier {
 public:
-	Notifier(key_t key);
-	void notify();
-	void wait();
+    Notifier(key_t key);
+    void notify();
+    void wait();
 private:
-	int msgid_;
+    int msgid_;
 };

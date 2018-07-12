@@ -7,12 +7,12 @@ using namespace std;
 
 class FileLock {
 public:
-	FileLock(string path);
-	~FileLock();
-	int lock();
-	int unlock();
+    FileLock(string path);
+    ~FileLock();
+    int lock();
+    int unlock();
 private:
-	void init_lock();
-	int fd_;	
-	struct flock lock_;
+    void init_lock();
+    int fd_;    
+    struct flock lock_;
 };

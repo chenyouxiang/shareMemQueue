@@ -4,8 +4,8 @@
 
 class FileLockGuard {
 public:
-	FileLockGuard(FileLock &lock);
-	~FileLockGuard();
+    FileLockGuard(FileLock &lock);
+    ~FileLockGuard();
 private:
-	FileLock &lock_;
+    FileLock &lock_;
 };
