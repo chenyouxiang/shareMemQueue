@@ -1,0 +1,4 @@
+/data/cpp/shareMemQueue/CMakeFiles/lsharememqueue.dir
+/data/cpp/shareMemQueue/CMakeFiles/sharememqueue.dir
+/data/cpp/shareMemQueue/CMakeFiles/test1.dir
+/data/cpp/shareMemQueue/CMakeFiles/test2.dir

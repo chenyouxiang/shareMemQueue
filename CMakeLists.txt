@@ -8,28 +8,28 @@ src/main.cpp
 src/FileLock.cpp
 src/FileLockGuard.cpp
 src/Notifier.cpp
-src/ShareMem.cpp
+src/ShareMemQueue.cpp
 )
 
 add_executable(test1
-test/test1.cpp
+src/test/test1.cpp
 src/FileLock.cpp
 src/FileLockGuard.cpp
 src/Notifier.cpp
-src/ShareMem.cpp
+src/ShareMemQueue.cpp
 )
 
 add_executable(test2
-test/test2.cpp
+src/test/test2.cpp
 src/FileLock.cpp
 src/FileLockGuard.cpp
 src/Notifier.cpp
-src/ShareMem.cpp
+src/ShareMemQueue.cpp
 )
 
 add_library(lsharememqueue
 src/FileLock.cpp
 src/FileLockGuard.cpp
 src/Notifier.cpp
-src/ShareMem.cpp
+src/ShareMemQueue.cpp
 )

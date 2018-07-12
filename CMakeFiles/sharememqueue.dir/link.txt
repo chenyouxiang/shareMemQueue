@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/sharememqueue.dir/src/main.cpp.o CMakeFiles/sharememqueue.dir/src/FileLock.cpp.o CMakeFiles/sharememqueue.dir/src/FileLockGuard.cpp.o CMakeFiles/sharememqueue.dir/src/Notifier.cpp.o CMakeFiles/sharememqueue.dir/src/ShareMemQueue.cpp.o  -o sharememqueue -rdynamic 

@@ -1,7 +1,7 @@
 #include "FileLock.h"
 #include "FileLockGuard.h"
 #include <unistd.h> 
-#include "ShareMem.h"
+#include "ShareMemQueue.h"
 #include <string.h>
 #include "malloc.h"
 
@@ -12,7 +12,7 @@ int main(){
 		printf("%s\n", "fork error");
 	} else if(pid == 0){
 		try{
-			ShareMem queue(path, 1024);
+			ShareMemQueue queue(path, 1024);
 			for(int i=0; i<1000000; i++){
 				string s = "testasfdasgas";
 				
@@ -29,7 +29,7 @@ int main(){
 		}
 	} else if(pid > 0){
 		try{
-			ShareMem queue(path, 1024);
+			ShareMemQueue queue(path, 1024);
 			while(true) {
 				void **data =reinterpret_cast<void**>(malloc(sizeof(void*)));
 				int size = queue.read(data);

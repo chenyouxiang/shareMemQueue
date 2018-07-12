@@ -1,0 +1,2 @@
+/usr/bin/ar cr liblsharememqueue.a  CMakeFiles/lsharememqueue.dir/src/FileLock.cpp.o CMakeFiles/lsharememqueue.dir/src/FileLockGuard.cpp.o CMakeFiles/lsharememqueue.dir/src/Notifier.cpp.o CMakeFiles/lsharememqueue.dir/src/ShareMemQueue.cpp.o
+/usr/bin/ranlib liblsharememqueue.a

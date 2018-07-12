@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/data/cpp/shareMemQueue/src/FileLock.h
+string
+-
+fcntl.h
+-
+
+/data/cpp/shareMemQueue/src/FileLockGuard.h
+FileLock.h
+/data/cpp/shareMemQueue/src/FileLock.h
+
+/data/cpp/shareMemQueue/src/Notifier.h
+sys/msg.h
+-
+
+/data/cpp/shareMemQueue/src/ShareMemQueue.cpp
+sys/ipc.h
+-
+sys/shm.h
+-
+memory.h
+-
+malloc.h
+-
+ShareMemQueue.h
+/data/cpp/shareMemQueue/src/ShareMemQueue.h
+FileLockGuard.h
+/data/cpp/shareMemQueue/src/FileLockGuard.h
+
+/data/cpp/shareMemQueue/src/ShareMemQueue.h
+string
+-
+FileLock.h
+/data/cpp/shareMemQueue/src/FileLock.h
+Notifier.h
+/data/cpp/shareMemQueue/src/Notifier.h
+sys/types.h
+-
+

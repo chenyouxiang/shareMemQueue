@@ -7,10 +7,10 @@
 
 using namespace std;
 
-class ShareMem {
+class ShareMemQueue {
 public:
-	ShareMem(string path, size_t size);
-	~ShareMem();
+	ShareMemQueue(string path, size_t size);
+	~ShareMemQueue();
 	int write(const void *data, size_t size);
 	int read(void **data);
 private:

@@ -3,11 +3,11 @@
 #include <sys/shm.h>
 #include <memory.h>
 #include <malloc.h>
-#include "ShareMem.h"
+#include "ShareMemQueue.h"
 #include "FileLockGuard.h"
 
 
-ShareMem::ShareMem(string path, size_t size):lock_(path),key_(ftok(path.c_str(),1)), notifier_(key_) {
+ShareMemQueue::ShareMemQueue(string path, size_t size):lock_(path),key_(ftok(path.c_str(),1)), notifier_(key_) {
 	shmId_ = shmget(key_, sizeof(MemHeader) + size, 0666|IPC_CREAT);
 	if(shmId_ == -1){
 		if(errno == ENOENT) {
@@ -28,7 +28,7 @@ ShareMem::ShareMem(string path, size_t size):lock_(path),key_(ftok(path.c_str(),
 }
 
 
-ShareMem::~ShareMem(){
+ShareMemQueue::~ShareMemQueue(){
 	auto ret = shmdt(memHeader_);
 	if(ret == -1) {
 		char err[100];
@@ -37,7 +37,7 @@ ShareMem::~ShareMem(){
 	}
 }
 
-int ShareMem::write(const void *data, size_t size){
+int ShareMemQueue::write(const void *data, size_t size){
 	int ret = -1;
 	{
 		FileLockGuard gurad(lock_);
@@ -50,7 +50,7 @@ int ShareMem::write(const void *data, size_t size){
 	return ret;
 }
 
-int ShareMem::read(void **data){
+int ShareMemQueue::read(void **data){
 	int ret = -1;
 	{
 		FileLockGuard gurad(lock_);
@@ -65,7 +65,7 @@ int ShareMem::read(void **data){
 	return ret;
 }
 
-int ShareMem::doRead(void **data){
+int ShareMemQueue::doRead(void **data){
 	char* mem = memHeader_->addr + memHeader_->readIndex;
 
 	// printf("doRead->readIndex:%lu\n", memHeader_->readIndex);
@@ -114,7 +114,7 @@ int ShareMem::doRead(void **data){
  * @param  size [description]
  * @return      [如果返回0，可以再次调用一次，返回-1代表失败]
  */
-int ShareMem::doWrite(const void *data, size_t size) {
+int ShareMemQueue::doWrite(const void *data, size_t size) {
 	// printf("doWrite->readIndex:%lu\n", memHeader_->readIndex);
 	// printf("doWrite->writeIndex:%lu\n", memHeader_->writeIndex);
 	char* mem = memHeader_->addr + memHeader_->writeIndex;
