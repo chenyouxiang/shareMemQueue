@@ -30,15 +30,17 @@ int main(){
 	} else if(pid > 0){
 		try{
 			ShareMemQueue queue(path, 1024);
+			void **data =reinterpret_cast<void**>(malloc(sizeof(void*)));
 			while(true) {
-				void **data =reinterpret_cast<void**>(malloc(sizeof(void*)));
 				int size = queue.read(data);
 				if(size > 0){
 					string s;
 					s.assign(reinterpret_cast<char*>(*data),size);
 					printf("%s\n", s.c_str());
+					free(*data);
 				}
 			}
+			free(data);
 		}catch(string &s){
 			printf("%s\n", s.c_str());
 		}
