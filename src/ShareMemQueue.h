@@ -15,6 +15,7 @@ public:
     int read(void **data);
 private:
     struct MemHeader {
+        int magic;
         size_t readIndex;
         size_t writeIndex;
         size_t size; 
@@ -33,4 +34,5 @@ private:
     int doRead(void **data);
     const size_t BLOCK_HEADER_SIZE = sizeof(BlockHeader);
     const size_t MEM_HEADER_SIZE = sizeof(MemHeader);
+    const int MAGIC = 123456;
 };

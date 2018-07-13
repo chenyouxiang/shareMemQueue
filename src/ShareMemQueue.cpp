@@ -22,8 +22,13 @@ ShareMemQueue::ShareMemQueue(string path, size_t size):lock_(path),key_(ftok(pat
         throw string("shmat error");
     }
     memHeader_ = reinterpret_cast<MemHeader*>(addr);
-    memset(memHeader_, 0, sizeof(MemHeader) + size);
+    if(memHeader_->magic == MAGIC && memHeader_->size == size && memHeader_->readIndex < size && memHeader_->writeIndex < size) {
+        //上次使用过并初始化过的共享内存
+    } else{
+        memset(memHeader_, 0, sizeof(MemHeader) + size);
+    }
     memHeader_->size = size;
+    memHeader_->magic = MAGIC;
     memHeader_->addr = addr + MEM_HEADER_SIZE;
 }
 
